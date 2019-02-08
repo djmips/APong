@@ -1,0 +1,271 @@
+--- Symbol List (sorted by symbol)
+0.FREE_BYTES             0000                  
+0.neg                    f07b              (R )
+0.nofill                 f08d              (R )
+0.noreset                f0bd              (R )
+0.pos                    f07d              (R )
+0.served                 f0cc              (R )
+0.serving                f0cf              (R )
+1.CLEAR_STACK            f006              (R )
+11.incrementdone         f404              (R )
+11.silence               f3f2              (R )
+2.CYCLES                 0028              (R )
+4.attractMode            f1fe              (R )
+4.setPaddleBase          f1e0              (R )
+4.setWinScore            f1ed              (R )
+5.1                      f26f              (R )
+5.2                      f272              (R )
+5.checkbounce            f223              (R )
+5.exit                   f272              (R )
+5.fast                   f261              (R )
+5.goodh                  f231                  
+5.goodl                  f22d                  
+5.med                    f267              (R )
+5.rightSide              f21d              (R )
+5.updateVel              f26b              (R )
+7.ballOffRightEdge       f30e              (R )
+7.ballOnScreenX          f31d              (R )
+7.ballOnScreenY          f34f              (R )
+7.gameplay               f2eb              (R )
+7.goodscl                f31b              (R )
+7.goodscr                f309              (R )
+7.nosound                f331              (R )
+8.serving                f370              (R )
+9.divideLoop             f3c0              (R )
+attractLockout           009d              (R )
+AUDC0                    0015              (R )
+AUDC1                    0016                  
+AUDF0                    0017              (R )
+AUDF1                    0018                  
+AUDV0                    0019              (R )
+AUDV1                    001a                  
+BALLHEIGHT               0003              (R )
+BallTemp                 008d              (R )
+BallVelX                 0093              (R )
+BallVelXfrac             0092              (R )
+BallVelY                 0095              (R )
+BallVelYfrac             0094              (R )
+BallX                    008f              (R )
+BallXfrac                008e              (R )
+BallY                    0091              (R )
+BallYfrac                0090              (R )
+BASSSOUND                0006              (R )
+BLUE                     0070                  
+BLUE2                    0080                  
+BROWN                    00f0                  
+BROWNGREEN               00c0                  
+BURNTORANGE              0030                  
+BUZZSOUND                000f              (R )
+BWCOLOR                  0008                  
+CheckCollisions          f20a              (R )
+COLUBK                   0009                  
+COLUP0                   0006              (R )
+COLUP1                   0007              (R )
+COLUPF                   0008              (R )
+Counter                  0080              (R )
+CTRLPF                   000a              (R )
+CXBLPF                   0006                  
+CXCLR                    002c              (R )
+CXM0FB                   0004              (R )
+CXM0P                    0000                  
+CXM1FB                   0005                  
+CXM1P                    0001                  
+CXP0FB                   0002                  
+CXP1FB                   0003                  
+CXPPMM                   0007                  
+Digit0                   fa90              (R )
+Digit1                   fab0              (R )
+Digit10                  fdb0              (R )
+Digit11                  fdd0              (R )
+Digit12                  fe90              (R )
+Digit13                  feb0              (R )
+Digit14                  fed0              (R )
+Digit15                  ff90              (R )
+Digit2                   fad0              (R )
+Digit3                   fb90              (R )
+Digit4                   fbb0              (R )
+Digit5                   fbd0              (R )
+Digit6                   fc90              (R )
+Digit7                   fcb0              (R )
+Digit8                   fcd0              (R )
+Digit9                   fd90              (R )
+DIGITHEIGHT              0010              (R )
+DigitLPtr                0082              (R )
+DigitLTemp               0086              (R )
+DigitRPtr                0084              (R )
+DigitRTemp               0087              (R )
+DigitTable               f484              (R )
+DIGITY                   0054              (R )
+DoDrawDigitL             f151              (R )
+DoDrawDigitR             f182              (R )
+DOUBLEWIDTHBALL          0010                  
+DOUBLEWIDTHMISSILE       0010              (R )
+ENABL                    001f              (R )
+ENAM0                    001d              (R )
+ENAM1                    001e                  
+enddigit11               fdf0                  
+enddigit5                fbf0                  
+enddigit8                fcf0                  
+ENGINESOUND              0003              (R )
+ExitSFX                  f405              (R )
+gameState                009c              (R )
+GOLD                     0010                  
+GRAY                     0000              (R )
+GREEN                    00b0                  
+GRP0                     001b              (R )
+GRP1                     001c              (R )
+HMBL                     0024                  
+HMCLR                    002b              (R )
+HMM0                     0022                  
+HMM1                     0023                  
+HMOVE                    002a              (R )
+HMP0                     0020              (R )
+HMP1                     0021                  
+INPT0                    0008              (R )
+INPT1                    0009                  
+INPT2                    000a                  
+INPT3                    000b                  
+INPT4                    000c                  
+INPT5                    000d                  
+INTIM                    0284              (R )
+J0DOWN                   0020                  
+J0LEFT                   0040                  
+J0RIGHT                  0080                  
+J0UP                     0010                  
+J1DOWN                   0002                  
+J1LEFT                   0004                  
+J1RIGHT                  0008                  
+J1UP                     0001                  
+KernelLoop               f13e              (R )
+KernelRoutine            f100              (R )
+LEADSOUND                000c              (R )
+LEFTFIVE                 0050                  
+LEFTFOUR                 0040                  
+LEFTONE                  0010                  
+LEFTSEVEN                0070                  
+LEFTSIX                  0060                  
+LEFTTHREE                0030                  
+LEFTTWO                  0020                  
+LIGHTBLUE                0090                  
+MainGameLoop             f084              (R )
+MISSED_BALL              f412              (R )
+MoveBall                 f2a3              (R )
+newvelYh                 f283              (R )
+newvelYl                 f273              (R )
+NO_ILLEGAL_OPCODES       0000 ????         (R )
+NoBallToPaddleCollision  f272              (R )
+NOISESOUND               0008              (R )
+NOMOVEMENT               0000                  
+NUSIZ0                   0004              (R )
+NUSIZ1                   0005              (R )
+OCTWIDTHBALL             0030                  
+OCTWIDTHMISSILE          0030              (R )
+ONECOPYDOUBLE            0005              (R )
+ONECOPYNORMAL            0000                  
+ONECOPYQUAD              0007                  
+ORANGE                   0020                  
+OverscanRoutine          f1ca              (R )
+P0DIFF                   0040              (R )
+P1DIFF                   0080              (R )
+PADDLE_HIT               f47e              (R )
+PaddleBase               0081              (R )
+PADDLEHEIGHT             000f              (R )
+PaddleLTemp              0088              (R )
+PaddleLY                 008a              (R )
+PaddleNotTooHigh         f2a0              (R )
+PaddleRTemp              0089              (R )
+PaddleRY                 008b              (R )
+PaddleValue              008c              (R )
+PF0                      000d              (R )
+PF1                      000e              (R )
+PF2                      000f              (R )
+PITFALLSOUND             0007              (R )
+PLAYHEIGHT               00c8              (R )
+PositionASprite          f3bb              (R )
+PRIORITYPF               0004                  
+PURPLE                   0050                  
+PURPLEBLUE               0060                  
+QUADWIDTHBALL            0020                  
+QUADWIDTHMISSILE         0020              (R )
+ReadPaddle1              f15a              (R )
+ReadPaddle2              f18b              (R )
+RED                      0040                  
+REFLECTEDPF              0001              (R )
+REFP0                    000b                  
+REFP1                    000c                  
+RESBL                    0014                  
+RESET                    0001                  
+RESM0                    0012                  
+RESM1                    0013                  
+RESMP0                   0028                  
+RESMP1                   0029                  
+RESP0                    0010              (R )
+RESP1                    0011                  
+Return                   f3d3                  
+RIGHTEIGHT               0080                  
+RIGHTFIVE                00b0                  
+RIGHTFOUR                00c0                  
+RIGHTONE                 00f0                  
+RIGHTSEVEN               0090                  
+RIGHTSIX                 00a0                  
+RIGHTTHREE               00d0                  
+RIGHTTWO                 00e0                  
+RSYNC                    0003                  
+SAWSOUND                 0001              (R )
+ScoreL                   0096              (R )
+SCOREPF                  0002                  
+ScoreR                   0097              (R )
+SELECT                   0002                  
+Serve                    f05f              (R )
+SERVECOUNT               0066              (R )
+serveDelay               009e              (R )
+SetPaddleY               f293              (R )
+SetupDisplayVariables    f357              (R )
+sfxLast                  009b              (R )
+sfxPlay                  009a              (R )
+SFXTick                  f3d4              (R )
+SINGLEWIDTHBALL          0000              (R )
+SINGLEWIDTHMISSILE       0000              (R )
+soundPointer             0098              (R )
+soundTypeArray           f40a              (R )
+SQUARESOUND              0004              (R )
+Start                    f000              (R )
+SWACNT                   0281                  
+SWBCNT                   0283                  
+SWCHA                    0280                  
+SWCHB                    0282              (R )
+T1024T                   0297                  
+TAN                      00e0                  
+TANGREEN                 00d0                  
+THREECOPIESCLOSE         0003                  
+THREECOPIESMED           0006                  
+TIA_BASE_ADDRESS         0000              (R )
+TIA_BASE_READ_ADDRESS    0000              (R )
+TIA_BASE_WRITE_ADDRESS   0000              (R )
+TIM1T                    0294                  
+TIM64T                   0296              (R )
+TIM8T                    0295                  
+TIMINT                   0285                  
+TURQUOISE                00a0                  
+TWOCOPIESCLOSE           0001                  
+TWOCOPIESMED             0002                  
+TWOCOPIESWIDE            0004                  
+UpdateCounters           f3b8              (R )
+VBLANK                   0001              (R )
+VBLANKRoutine            f09c              (R )
+VDELBL                   0027              (R )
+VDELP0                   0025              (R )
+VDELP1                   0026                  
+VERSION_MACRO            006a                  
+VERSION_VCS              0069                  
+volleyCounter            009f              (R )
+VSYNC                    0000              (R )
+VSYNCLoop                f0a2              (R )
+WaitForOverscanEnd       f204              (R )
+WaitForVblankEnd         f0d1              (R )
+WALL_HIT                 f474              (R )
+winScore                 00a0              (R )
+WSYNC                    0002              (R )
+Z_LEAD_B3                00b4              (R )
+Z_SQUARE_B4_1            001e              (R )
+--- End of Symbol List.
