@@ -155,6 +155,7 @@ RESET       =   %00000001
 
 
 Counter         ds 1
+PaddleBase      ds 1
 
 
 DigitLPtr       ds 2
@@ -309,7 +310,7 @@ MainGameLoop
     jsr SFXTick
     jsr KernelRoutine
     jsr SFXTick
-    jsr OverscanRoutine
+    jsr OverscanRoutine ; checks paddles and sets new paddle velocity Y
     jmp MainGameLoop
 
 ;-------------------------------------------------------------------------
@@ -399,14 +400,16 @@ KernelRoutine
 
     ldy #PLAYHEIGHT     ;+2  2
 
-    lda Counter
-    and #1
-    tax                 ;+7  9
+    lda Counter         ;3
+    and #1              ;2
+    clc                 ;2
+    adc PaddleBase      ;3
+    tax                 ;2 +12  14
 
     lda #255
-    sta PaddleValue     ;+5 14  necessary to preload PaddleValue
+    sta PaddleValue     ;+5 19  necessary to preload PaddleValue
 
-    SLEEP 45            ;+45    59
+    SLEEP 40            ;+40    59
 
 
     lda #BALLHEIGHT
@@ -438,7 +441,7 @@ DoDrawDigitL
                         ;       and save 1 cycle.
 
 
-    lda INPT2,X         ; 4
+    lda INPT0,X         ; 4
     bpl ReadPaddle1     ; 2/3
     .byte $2C           ; 4
 ReadPaddle1
@@ -475,7 +478,7 @@ DoDrawDigitR
                         ;       here - because of VDEL GRP1 must be
                         ;       written to every time.
 
-    lda INPT2,X
+    lda INPT0,X
     bpl ReadPaddle2
     .byte $2C
 ReadPaddle2
@@ -535,6 +538,14 @@ OverscanRoutine subroutine
     sta VBLANK  ;turn on VBLANK
     lda  #34
     sta  TIM64T
+
+    ldx #0
+	lda SWCHB
+	and #P1DIFF
+	bne .setPaddleBase
+    ldx #2
+.setPaddleBase
+    stx PaddleBase
 
 	; Set the winning score to be 11 or 15 depending on Player 0 difficulty switch.
 	ldx	#11
@@ -676,7 +687,7 @@ NoBallToPaddleCollision
 ; hitting one of the paddles. When the ball hits the top or bottom of the screen, it will reverse direction,
 ; but keep the same speed. When the ball hits the paddle the effect on the vertical motion is determined by
 ; where on the paddle it hits. The paddle is 16 pixels high which is divided up into 8 regions,
-; a hit on these regions effects the vertical position as follows:
+; a hit on these regions affects the vertical position as follows:
 
 ; 1 - Up fast
 ; 2 - Up medium
@@ -848,6 +859,15 @@ MoveBall subroutine
         eor #$FF
         adc #$00
         sta BallVelY
+
+        ; this should make sure that ball is back in bounds
+        lda BallVelYfrac
+        clc
+        adc BallYfrac
+        sta BallYfrac
+        lda BallY
+        adc BallVelY
+        sta BallY
         
 .ballOnScreenY
 
