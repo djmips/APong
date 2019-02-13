@@ -342,10 +342,6 @@ VSYNCLoop
     jsr Serve
     
 .noreset
-
-    jsr UpdateCounters
-    jsr SetupDisplayVariables
-
     ldx serveDelay
     beq .served
     dex
@@ -356,6 +352,8 @@ VSYNCLoop
     jsr MoveBall
 .serving
 
+    jsr UpdateCounters
+    jsr SetupDisplayVariables
     sta CXCLR
 
 WaitForVblankEnd
