@@ -663,10 +663,19 @@ CheckCollisions subroutine
         ldy #$0
     
 .updateVel
+        bit BallVelX        ; N = sign of the just-bounced velX (set = heading left)
         sta BallVelXfrac
-        sty BallVelX        
-      
-.1      inx      
+        sty BallVelX        ; sta/sty don't touch flags, so N still holds the bounce sign
+        bpl .1              ; bounce was rightward -> positive magnitude is correct
+        sec                 ; bounce was leftward -> negate to restore direction
+        lda #$00
+        sbc BallVelXfrac
+        sta BallVelXfrac
+        lda #$00
+        sbc BallVelX
+        sta BallVelX
+
+.1      inx
         stx volleyCounter
         
 .2
@@ -699,13 +708,15 @@ NoBallToPaddleCollision
 ; 8 2 pixel high segments
 
 
-; Hit counter for ball speed increase. Counter determines horizontal ball speed. Counter caps at 15. 
-; Counter resets when point scored
+; Hit counter for ball speed increase. Counter determines horizontal ball speed.
+; Counter resets when point scored. Speeds up at hit 4 (medium) and hit 12 (fast).
+; Real Pong uses a 4-bit counter but inhibits it at 12, so it never reaches 15 or wraps.
+; This code mirrors that, freezing the counter at 13.
 ;
 ; HitCounter   H1(11)        H1(3)
 ; 0-3          0            0
 ; 4-11         0            1
-; 12-15        1            1;
+; 12+          1            1;
 ;
 ;
 newvelYl:    .byte $00,$00, $00,$00, $80,$80, $00,$00, $00,$00, $00,$00, $80,$80, $00,$00
