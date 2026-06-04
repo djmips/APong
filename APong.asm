@@ -630,15 +630,8 @@ CheckCollisions subroutine
         lda newvelYh,x
         sta BallVelY
        
-        sec                     ; 0-velX -> velX
-        lda #$00
-        sbc BallVelXfrac
-        sta BallVelXfrac
-        lda #$00
-        sbc BallVelX
-        sta BallVelX
+        ; horizontal velocity is set further below (tier magnitude + paddle side), not reflected
 
-        
         lda #<PADDLE_HIT
         sta soundPointer
         lda #>PADDLE_HIT
@@ -646,36 +639,39 @@ CheckCollisions subroutine
         sta sfxPlay             ; starts the SFX
     
        
-        ldx volleyCounter
-        cpx #4
-        beq .med
-        
-        cpx #12
-        beq .fast
-        bcs .2
-        bcc .1
+        ; --- set horizontal velocity outright: magnitude from volley tier, ---
+        ; --- direction from which paddle was hit (never reflect into a paddle) ---
+        ; tier from volleyCounter (read before incrementing): 0-3 slow, 4-11 med, 12+ fast
+        ldy #0
+        lda volleyCounter
+        cmp #4
+        bcc .setVelX            ; 0-3  -> tier 0 (slow)
+        iny
+        cmp #12
+        bcc .setVelX            ; 4-11 -> tier 1 (medium)
+        iny                     ; 12+  -> tier 2 (fast)
 
-.fast   lda #$0
-        ldy #$1
-        bne .updateVel
-
-.med    lda #$c0
-        ldy #$0
-    
-.updateVel
-        bit BallVelX        ; N = sign of the just-bounced velX (set = heading left)
+.setVelX
+        lda BallX
+        cmp #80
+        bcs .goLeft             ; right paddle -> send ball left (-)
+        lda speedXfracR,y       ; left paddle  -> send ball right (+)
         sta BallVelXfrac
-        sty BallVelX        ; sta/sty don't touch flags, so N still holds the bounce sign
-        bpl .1              ; bounce was rightward -> positive magnitude is correct
-        sec                 ; bounce was leftward -> negate to restore direction
-        lda #$00
-        sbc BallVelXfrac
+        lda speedXhiR,y
+        sta BallVelX
+        jmp .countHit
+.goLeft
+        lda speedXfracL,y
         sta BallVelXfrac
-        lda #$00
-        sbc BallVelX
+        lda speedXhiL,y
         sta BallVelX
 
-.1      inx
+.countHit
+        ; advance hit counter, holding at 12 (arcade inhibits counting past 12)
+        ldx volleyCounter
+        cpx #12
+        bcs .2
+        inx
         stx volleyCounter
         
 .2
@@ -721,6 +717,13 @@ NoBallToPaddleCollision
 ;
 newvelYl:    .byte $00,$00, $00,$00, $80,$80, $00,$00, $00,$00, $00,$00, $80,$80, $00,$00
 newvelYh:    .byte $fe,$fe, $ff,$ff, $ff,$ff, $00,$00, $00,$00, $01,$01, $01,$01, $02,$02
+
+; Horizontal ball speed by volley tier: slow, medium, fast (magnitude only).
+; R = rightward (+), L = leftward (-, two's complement of the same magnitude).
+speedXfracR: .byte $80,$c0,$00   ; +0.5, +0.75, +1.0
+speedXhiR:   .byte $00,$00,$01
+speedXfracL: .byte $80,$40,$00   ; -0.5, -0.75, -1.0  ($ff80,$ff40,$ff00)
+speedXhiL:   .byte $ff,$ff,$ff
 ;newvelYl:    .byte $80,$80,$80, $80,$80,$80, $00,$00,$00, $00, $00,$00,$00, $80,$80,$80, $80,$80,$80, $80
 ;newvelYh:    .byte $fd,$fd,$fd, $fe,$fe,$fe, $ff,$ff,$ff, $00, $01,$01,$01, $01,$01,$01, $02,$02,$02, $02
 
